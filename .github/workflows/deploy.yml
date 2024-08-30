@@ -10,9 +10,12 @@ jobs:
     steps:
       - name: Checkout # 将代码拉取到虚拟机
         uses: actions/checkout@v3
+        
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Install and Build # 安装依赖、打包，如果提前已打包好无需这一步
-      - run: npm install -g pnpm # 安装 PNPM
         run: |
           pnpm install
           cd ./examples/react-project
