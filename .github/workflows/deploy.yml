@@ -30,10 +30,13 @@ jobs:
 
       - name: build
         run: pnpm build
+
+      - name: cd root Dir
+        run : cd ../..
       
       - name: Deploy # 部署
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.ACTIONS_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./examples/react-project/dist
           publish_branch: gh-pages
