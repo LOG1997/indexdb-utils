@@ -10,18 +10,27 @@ jobs:
     steps:
       - name: Checkout # 将代码拉取到虚拟机
         uses: actions/checkout@v3
-        
+
       - uses: pnpm/action-setup@v4
         with:
           version: 9
 
-      - name: Install and Build # 安装依赖、打包，如果提前已打包好无需这一步
-        run: |
+
+      - name: Install  # 安装依赖、打包，如果提前已打包好无需这一步
+        run: 
           pnpm install
           cd ./examples/react-project
           pnpm install
           pnpm run build
+      - name: cd Dir
+        run: cd ./examples/react-project
 
+      - name: install example packages
+        run: pnpm install
+
+      - name: build
+        run: pnpm build
+      
       - name: Deploy # 部署
         uses: peaceiris/actions-gh-pages@v3
         with:
