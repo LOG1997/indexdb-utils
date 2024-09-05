@@ -12,7 +12,7 @@
         "dev:react": "cd examples/react-project && npm run dev",
         "build:react": "cd examples/react-project && npm run build",
         "build": "vite build",
-        "build:examples": "npm run build && cd examples/react-project && pnpm i",
+        "build:examples": "npm run build && cd examples/react-project && pnpm install && npm run build",
         "docs:dev": "vitepress dev packages",
         "docs:build": "vitepress build packages",
         "docs:preview": "vitepress preview"

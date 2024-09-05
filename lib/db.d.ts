@@ -19,7 +19,7 @@ declare class IndexDb {
      * @returns 所有数据Array
      * @description 获取所有数据
      */
-    getAll(): any;
+    getAllData(): Promise<any>;
     /**
      * @returns 数据库总长度
      * @description 获取所有数据的列表长度

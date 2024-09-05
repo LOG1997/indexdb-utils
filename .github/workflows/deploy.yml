@@ -22,17 +22,8 @@ jobs:
       - name: BUild packages
         run: pnpm build
 
-      - name: cd Dir
-        run: cd ./examples/react-project
-
-      - name: install example packages
-        run: pnpm install
-
-      - name: build
-        run: pnpm build
-
-      - name: cd root Dir
-        run : cd ../..
+      - name: build examples
+        run: pnpm examples:build
       
       - name: Deploy # 部署
         uses: peaceiris/actions-gh-pages@v3

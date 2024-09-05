@@ -42,8 +42,8 @@ class IndexDb {
      * @returns 所有数据Array
      * @description 获取所有数据
      */
-    getAll() {
-        return this.dbStore.dbData.toArray()
+  async getAllData() {
+        return await this.dbStore.dbData.toArray()
     }
     /**
      * @returns 数据库总长度
