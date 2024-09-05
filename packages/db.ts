@@ -8,9 +8,9 @@ class IndexDb {
     version: number
     dbKeys:string[]
     constructor(name: string, version = 1,dbKeys:string[]=[]) {
-        this.name = name
-        this.version = version
-        this.dbKeys = dbKeys
+        this.name = name // 数据库名称
+        this.version = version // 数据库版本号
+        this.dbKeys = dbKeys // 数据库key
         this.dbStore = new Dexie(name) as Dexie & {
             dbData: EntityTable<
                 DbData,
@@ -42,8 +42,10 @@ class IndexDb {
      * @returns 所有数据Array
      * @description 获取所有数据
      */
-  async getAllData() {
-        return await this.dbStore.dbData.toArray()
+  async getAllData(isAsc:boolean=true) {
+        const allData= await this.dbStore.dbData.toArray()
+        // return allData
+        return isAsc ? allData : allData.reverse()
     }
     /**
      * @returns 数据库总长度
@@ -61,9 +63,9 @@ class IndexDb {
             return item.content.includes(filter)
         }).toArray()
     }
-    getKeys() {
+    getKeys(key:string) {
         // keys 方法获取所有主键
-        return this.dbStore.dbData.orderBy('dateTime').keys();
+        return this.dbStore.dbData.orderBy(key).keys();
     }
 }
 

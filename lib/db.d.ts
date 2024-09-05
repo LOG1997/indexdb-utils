@@ -19,7 +19,7 @@ declare class IndexDb {
      * @returns 所有数据Array
      * @description 获取所有数据
      */
-    getAllData(): Promise<any>;
+    getAllData(isAsc?: boolean): Promise<any>;
     /**
      * @returns 数据库总长度
      * @description 获取所有数据的列表长度
@@ -30,6 +30,6 @@ declare class IndexDb {
      * @returns
      */
     getFilterData(filter: string): any;
-    getKeys(): any;
+    getKeys(key: string): any;
 }
 export { IndexDb };
