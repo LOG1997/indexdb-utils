@@ -10,12 +10,9 @@ function App() {
     const [dataList, setDataList] = useState([])
     const [updateTime, setUpdateTime] = useState(0)
     const [sortObj, setSortObj] = useState<any>({})
-    const addData = async () => {
-        await db.setData({
-            name: 'test',
-            age: 18,
-            type: 'op',
-        })
+    const [dialogVisible,setDialogVisible]=useState(false)
+    const addData = async (data:any) => {
+        await db.setData(data)
         setUpdateTime(new Date().getTime())
     }
     const getAllData = async (isAsc:boolean=true) => {
@@ -31,6 +28,9 @@ function App() {
         })
         getAllData(value)
     }
+    const submit=(data:any)=>{
+        addData(data)
+    }
     const [pageParams, setPageParams] = useState({
         pageIndex: 1,
         pageSize: 10,
@@ -42,10 +42,10 @@ function App() {
     return (
         <div className="w-full px-12 py-6 text-center main-container">
             <div className="flex justify-between">
-                {/* <div className="operation-left">
-                    <Button size="sm" onClick={addData}>Add</Button>
-                </div> */}
-                <DialogAdd></DialogAdd>
+                <DialogAdd
+                submit={submit}
+                visible={dialogVisible}
+                ></DialogAdd>
                 <div className="operation-right"></div>
             </div>
             <DataTable
